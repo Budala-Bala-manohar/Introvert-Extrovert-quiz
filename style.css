@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Introvert or Extrovert Quiz</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Are You an Introvert or Extrovert?</h1>
+    <form id="quizForm">
+      <div class="question">
+        <p>1. Do you prefer spending time alone over going to parties?</p>
+        <label><input type="radio" name="q1" value="I" required> Yes</label>
+        <label><input type="radio" name="q1" value="E"> No</label>
+      </div>
+
+      <div class="question">
+        <p>2. Do you feel drained after socializing a lot?</p>
+        <label><input type="radio" name="q2" value="I" required> Yes</label>
+        <label><input type="radio" name="q2" value="E"> No</label>
+      </div>
+
+      <div class="question">
+        <p>3. Do you enjoy being the center of attention?</p>
+        <label><input type="radio" name="q3" value="E" required> Yes</label>
+        <label><input type="radio" name="q3" value="I"> No</label>
+      </div>
+
+      <div class="question">
+        <p>4. Do you find small talk boring or tiring?</p>
+        <label><input type="radio" name="q4" value="I" required> Yes</label>
+        <label><input type="radio" name="q4" value="E"> No</label>
+      </div>
+
+      <div class="question">
+        <p>5. Do you often speak before thinking?</p>
+        <label><input type="radio" name="q5" value="E" required> Yes</label>
+        <label><input type="radio" name="q5" value="I"> No</label>
+      </div>
+
+      <div class="question">
+        <p>6. Do you prefer deep conversations over casual chatting?</p>
+        <label><input type="radio" name="q6" value="I" required> Yes</label>
+        <label><input type="radio" name="q6" value="E"> No</label>
+      </div>
+
+      <div class="question">
+        <p>7. Do you make new friends easily?</p>
+        <label><input type="radio" name="q7" value="E" required> Yes</label>
+        <label><input type="radio" name="q7" value="I"> No</label>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="result" class="result"></div>
+  </div>
+
+  <script>
+    const quizForm = document.getElementById("quizForm");
+    const resultDiv = document.getElementById("result");
+
+    quizForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(quizForm);
+      let score = 0;
+
+      for (let value of formData.values()) {
+        if (value === "I") score++;
+        else score--;
+      }
+
+      let result =
+        score > 2
+          ? "You are mostly an Introvert!"
+          : score < -2
+          ? "You are mostly an Extrovert!"
+          : "You have a balanced (Ambivert) personality!";
+
+      resultDiv.textContent = result;
+    });
+  </script>
+</body>
+</html>
+
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.quiz-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 90%;
+  max-width: 500px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.question {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin: 5px 0;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.result {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
